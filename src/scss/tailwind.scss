@@ -32,7 +32,7 @@
 	}
 
 	.seo-content h2 {
-		@apply text-3xl font-bold mx-0 mb-3 text-left before:hidden #{!important};
+		@apply text-3xl font-extrabold mx-0 mb-3 text-left before:hidden #{!important};
 	}
 
 	.seo-content h2:not(:first-child) {
@@ -40,11 +40,11 @@
 	}
 
 	.seo-content h3 {
-		@apply text-2xl font-bold mb-3;
+		@apply text-2xl font-extrabold mb-3;
 	}
 
 	.seo-content strong {
-		@apply font-bold;
+		@apply font-extrabold;
 	}
 
 	.seo-content p{

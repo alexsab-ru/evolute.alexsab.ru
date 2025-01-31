@@ -12,9 +12,9 @@ import Button from '@/components/Button/Button.astro';
 import { phoneFormat } from '@/js/utils/numbers.format';
 import salons from '@/data/salons.json';
 const LEGAL_SALONS_INFO = salons.length > 1 
-    ? `<p class="font-bold">Подробности по телефону:</p>` + salons.map(s => `<p class="text-sm">${s.name}&nbsp;- <a class="whitespace-nowrap" href="tel:${phoneFormat(s.phone)}">${s.phone}</a></p>`).join('')
+    ? `<p class="font-extrabold">Подробности по телефону:</p>` + salons.map(s => `<p class="text-sm">${s.name}&nbsp;- <a class="whitespace-nowrap" href="tel:${phoneFormat(s.phone)}">${s.phone}</a></p>`).join('')
     : salons.length === 1 
-        ? `<p class="font-bold">Подробности в нашем дилерском центре по тел.: <a href="tel:${phoneFormat(salons[0].phone)}">${salons[0].phone}</a></p>`
+        ? `<p class="font-extrabold">Подробности в нашем дилерском центре по тел.: <a href="tel:${phoneFormat(salons[0].phone)}">${salons[0].phone}</a></p>`
         : '';
 ---
 {LEGAL_SALONS_INFO.length > 0 && (

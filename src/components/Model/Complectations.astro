@@ -36,7 +36,7 @@ const { models = [], model, brand, title = "Подобрать комплект�
 			<div class="relative">
 				<img loading="lazy" :src="currentModel.colors[0].carImage" class="w-full col-span-1" :alt="currentModel.name">
 				<div class="absolute -top-5 sm:top-0 left-0">
-					<div class="text-xl sm:text-3xl font-bold uppercase !leading-none" x-html={`'${brand}&nbsp;' + currentModel.name`}></div>
+					<div class="text-xl sm:text-3xl font-extrabold uppercase !leading-none" x-html={`'${brand}&nbsp;' + currentModel.name`}></div>
 					<div class="sm:text-xl" x-text="currentModelComplectation.name"></div>
 					<div class="sm:text-2xl" x-html="'от&nbsp;'+currencyFormat(currentModelComplectation.price)"></div>
 				</div>
@@ -49,10 +49,10 @@ const { models = [], model, brand, title = "Подобрать комплект�
 								<div class="" x-text="translit(key)"></div>
 								<div class="flex-grow border-b border-dotted mx-1"></div>
 								<template x-if="key === 'engine_power'">
-									<div class="font-bold" x-text="value + ' л.с.'"></div>
+									<div class="font-extrabold" x-text="value + ' л.с.'"></div>
 								</template>
 								<template x-if="key !== 'engine_power'">
-									<div class="font-bold" x-text="value"></div>
+									<div class="font-extrabold" x-text="value"></div>
 								</template>
 							</div>
 						</template>

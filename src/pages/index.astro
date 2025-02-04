@@ -18,12 +18,12 @@ const modelsWithComplectations = models.filter(m => (m?.complectations !== undef
 const salonsPhone = salons.map((salon: any) => { return salons[0].phone }).join(', ');
 import SeoText from '@/components/Seo/Index.astro';
 
+import InfoList from '@/components/Info/List.astro';
 const iSpaceModel = models.find(model => model.id === 'i-space');
-const infoLinks = [
-	{title: 'Прайс-листы', url: 'https://www.evolute.ru/media-link/i-space-pricelist', target: '_blank'},
-	{title: 'Брошуры', url: 'https://www.evolute.ru/media-link/i-space-brochure', target: '_blank'},
-	{title: 'Руководства пользователя', url: 'https://www.evolute.ru/media-link/i-space-manual', target: '_blank'}
-];
+
+import modelsSections from '@/data/models-sections.yml';
+const currentModel = modelsSections.find(m => m?.id === 'i-space') || {};
+const sections = currentModel?.sections || [];
 ---
 
 <Layout title=`Купить ${BRAND} у официального дилера ${SITE_NAME}` description=`Забронируйте свой автомобиль прямо сейчас у официалоного дилера ${BRAND} в ${LEGAL_CITY_WHERE}! ☎️ ${salonsPhone}`>
@@ -33,19 +33,11 @@ const infoLinks = [
 	{TIMER_ENDTIME && <Timer endtime={TIMER_ENDTIME} title="До конца акции осталось" subtitle="Подзаголовок" />}
 	<Model model={iSpaceModel} />
 
-	<section class="information bg-gray-50">
-		<div class="container">
-			{infoLinks.map(link => (
-				<a href={link.url} class="py-[2vw] flex items-center gap-x-5 text-xl font-medium transition-colors hover:text-accent-300 first:border-t border-b" { ...link?.target ? {target: link.target} : {} }>
-					<span class="">{link.title}</span>
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" fill="none" class="size-[60px] text-orange">
-						<path d="M12 30H48L30 12" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-						<path d="M12 30H48L30 48" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-					</svg>
-				</a>
-			))}
-		</div>
-	</section>
+	{ sections.length > 0 && sections.map(s => 
+		s.id === 'info' ? (<InfoList items={s.items} title={s?.title} classes={s?.sectionClass} id={s.id} grid={true}/>) : ('')
+	)}
+
+	
 
 	<ModelComplectations model={iSpaceModel} brand={BRAND} />
 	<Callback bgUrl="/img/konkurenty.webp" />

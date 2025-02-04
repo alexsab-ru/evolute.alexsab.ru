@@ -17,6 +17,7 @@ import salons from '@/data/salons.json'
 const modelsWithComplectations = models.filter(m => (m?.complectations !== undefined && m?.complectations.length))
 const salonsPhone = salons.map((salon: any) => { return salons[0].phone }).join(', ');
 import SeoText from '@/components/Seo/Index.astro';
+const iSpaceModel = models.find(model => model.id === 'i-space');
 ---
 
 <Layout title=`Купить ${BRAND} у официального дилера ${SITE_NAME}` description=`Забронируйте свой автомобиль прямо сейчас у официалоного дилера ${BRAND} в ${LEGAL_CITY_WHERE}! ☎️ ${salonsPhone}`>
@@ -24,8 +25,8 @@ import SeoText from '@/components/Seo/Index.astro';
 	{MARQUEE.show && <Morquee marquee={ MARQUEE } />}
 	<PageTitle />
 	{TIMER_ENDTIME && <Timer endtime={TIMER_ENDTIME} title="До конца акции осталось" subtitle="Подзаголовок" />}
-	<ModelList />
-	<LatestPosts collectionName="special-offers" title="Специальные предложения" id="specials" class="bg-gray-100" />
+	<Model model={iSpaceModel} />
+	<ModelComplectations model={iSpaceModel} />
 	<Callback bgUrl="/img/konkurenty.webp" />
 	<Services />
 	<SeoText mdx="index" />

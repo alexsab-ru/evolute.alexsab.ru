@@ -24,6 +24,8 @@ const iSpaceModel = models.find(model => model.id === 'i-space');
 import modelsSections from '@/data/models-sections.yml';
 const currentModel = modelsSections.find(m => m?.id === 'i-space') || {};
 const sections = currentModel?.sections || [];
+
+import UniversalSection from '@/components/Model/sections/universal.astro';
 ---
 
 <Layout title=`Купить ${BRAND} у официального дилера ${SITE_NAME}` description=`Забронируйте свой автомобиль прямо сейчас у официалоного дилера ${BRAND} в ${LEGAL_CITY_WHERE}! ☎️ ${salonsPhone}`>
@@ -34,7 +36,7 @@ const sections = currentModel?.sections || [];
 	<Model model={iSpaceModel} />
 
 	{ sections.length > 0 && sections.map(s => 
-		s.id === 'info' ? (<InfoList items={s.items} title={s?.title} classes={s?.sectionClass} id={s.id} grid={true}/>) : ('')
+		s.id === 'info' ? (<InfoList items={s.items} title={s?.title} classes={s?.sectionClass} id={s.id} grid={true}/>) : (<UniversalSection section={s} />)
 	)}
 
 	
